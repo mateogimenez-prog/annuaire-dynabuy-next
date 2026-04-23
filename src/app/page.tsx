@@ -173,9 +173,9 @@ export default async function HomePage() {
         <p className="section-sub">Une question ? Contactez directement l&apos;un de nos animateurs.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24, maxWidth: 800, margin: '0 auto' }}>
           {[
-            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png', pos: 'center 45%' },
-            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', photo: '/team-michael.png', pos: 'center 40%' },
-            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', photo: '/team-tanguy.png', pos: 'center 30%' },
+            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png', pos: 'center 25%' },
+            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', photo: '/team-michael.png', pos: 'center 25%' },
+            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', photo: '/team-tanguy.png', pos: 'center 20%' },
           ].map(({ prenom, nom, email, tel, photo, pos }) => (
             <div key={nom} style={{ background: 'white', borderRadius: 16, padding: '32px 24px 24px', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid #f0f0f0' }}>
               <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 16px', boxShadow: '0 0 0 3px white, 0 0 0 5px var(--red)' }}>
