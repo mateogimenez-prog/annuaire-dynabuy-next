@@ -56,22 +56,30 @@ export default function RegistrationForm() {
     const secteur = fields.secteur === 'Autres activités' ? fields.secteurLibre.trim() : fields.secteur;
 
     try {
-      // 1. Créer le compte Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: fields.email.trim().toLowerCase(),
-        password: fields.password,
+      // 1. Créer le compte (sans email de confirmation)
+      const authRes = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: fields.email.trim().toLowerCase(), password: fields.password }),
       });
+      const authData = await authRes.json();
 
-      if (authError) {
-        if (authError.message.includes('already registered')) {
+      if (!authRes.ok) {
+        if (authData.error === 'EMAIL_EXISTS') {
           setErrors({ email: 'Cet email est déjà utilisé. Connectez-vous.' });
         } else {
-          setErrors({ global: authError.message });
+          setErrors({ global: authData.error || 'Erreur lors de la création du compte.' });
         }
         return;
       }
 
-      const user_id = authData.user?.id;
+      const user_id = authData.user_id;
+
+      // 2. Connecter automatiquement l'utilisateur
+      await supabase.auth.signInWithPassword({
+        email: fields.email.trim().toLowerCase(),
+        password: fields.password,
+      });
 
       // 2. Créer le profil membre
       const res = await fetch('/api/members', {
