@@ -27,7 +27,7 @@ export default function AdminPanel() {
   const [members, setMembers] = useState<Member[]>([]);
   const [msgMember, setMsgMember] = useState('');
   const [editMember, setEditMember] = useState<Member | null>(null);
-  const [editForm, setEditForm] = useState({ prenom: '', nom: '', entreprise: '', secteur: '', ville: '', email: '', tel: '' });
+  const [editForm, setEditForm] = useState({ prenom: '', nom: '', entreprise: '', secteur: '', ville: '', email: '', tel: '', bio: '' });
   const [savingEdit, setSavingEdit] = useState(false);
 
   const headers = useCallback(() => ({
@@ -73,7 +73,7 @@ export default function AdminPanel() {
 
   function openEdit(m: Member) {
     setEditMember(m);
-    setEditForm({ prenom: m.prenom, nom: m.nom, entreprise: m.entreprise, secteur: m.secteur, ville: m.ville, email: m.email, tel: m.tel });
+    setEditForm({ prenom: m.prenom, nom: m.nom, entreprise: m.entreprise, secteur: m.secteur, ville: m.ville, email: m.email, tel: m.tel, bio: m.bio || '' });
   }
 
   async function handleSaveEdit(e: React.FormEvent) {
@@ -305,6 +305,16 @@ export default function AdminPanel() {
                     />
                   </div>
                 ))}
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <label style={{ fontSize: '0.83rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Présentation <span style={{ fontWeight: 400, color: '#999' }}>(facultatif)</span></label>
+                  <textarea
+                    className="form-input"
+                    style={{ resize: 'vertical', minHeight: 90, fontFamily: 'inherit', fontSize: '0.9rem' }}
+                    value={editForm.bio}
+                    onChange={e => setEditForm(f => ({ ...f, bio: e.target.value }))}
+                    placeholder="Description de l'activité du membre…"
+                  />
+                </div>
               </div>
               <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
                 <button type="submit" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }} disabled={savingEdit}>
