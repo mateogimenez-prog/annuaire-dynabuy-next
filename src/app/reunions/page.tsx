@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { getMeetings } from '@/lib/meetings';
 import MeetingList from '@/components/reunions/MeetingList';
 
-export default function ReunionsPage() {
-  const meetings = getMeetings();
+export default async function ReunionsPage() {
+  const meetings = await getMeetings();
 
   return (
     <>

@@ -6,7 +6,7 @@ import { getMeetings } from '@/lib/meetings';
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [members, meetings] = await Promise.all([getMembers(), Promise.resolve(getMeetings())]);
+  const [members, meetings] = await Promise.all([getMembers(), getMeetings()]);
 
   const sectors = new Set(members.map(m => m.secteur));
   const today = new Date();

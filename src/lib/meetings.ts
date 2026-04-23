@@ -1,4 +1,5 @@
 import type { Meeting } from '@/types';
+import { supabase } from '@/lib/supabase';
 
 export const SAMPLE_MEETINGS: Meeting[] = [
   { id: 'm1', titre: 'Rencontre réseau – Mont-de-Marsan', date: '2026-04-24', heure: '09h00', fin: '11h30', lieu: 'Mont-de-Marsan', format: 'Présentiel', animateur: 'Michaël GIMENEZ', prix: '13,00 € HT', lien: 'https://www.rencontres-dirigeants.com/nos-rencontres/35534' },
@@ -19,6 +20,12 @@ export const SAMPLE_MEETINGS: Meeting[] = [
   { id: 'm16', titre: 'Rencontre réseau – Hendaye', date: '2026-06-12', heure: '09h00', fin: '11h30', lieu: 'Hendaye', format: 'Présentiel', animateur: 'Michaël GIMENEZ', prix: '8,50 € HT', lien: 'https://www.rencontres-dirigeants.com/nos-rencontres/35573' },
 ];
 
-export function getMeetings(): Meeting[] {
-  return SAMPLE_MEETINGS;
+export async function getMeetings(): Promise<Meeting[]> {
+  const { data, error } = await supabase
+    .from('meetings')
+    .select('*')
+    .order('date', { ascending: true });
+
+  if (error || !data || data.length === 0) return SAMPLE_MEETINGS;
+  return data as Meeting[];
 }
