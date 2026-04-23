@@ -42,11 +42,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* PHOTO BANNER */}
-      <div className="home-banner-photo">
-        <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} sizes="100vw" />
-      </div>
-
       {/* STATS */}
       <section className="stats">
         <div className="stats-inner">
@@ -132,10 +127,10 @@ export default async function HomePage() {
       {/* PHOTO GALLERY */}
       <div className="home-gallery">
         <div className="home-gallery-item">
-          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div className="home-gallery-item">
-          <Image src="/photo-dejeuner-mer.jpg" alt="Déjeuner réseau vue mer" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
       </div>
 
