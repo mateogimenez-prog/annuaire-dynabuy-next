@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getMembers } from '@/lib/members';
 import { getMeetings } from '@/lib/meetings';
 
@@ -49,6 +50,18 @@ export default async function HomePage() {
           <div>
             <div className="stat-value">{upcoming.length}</div>
             <div className="stat-label">Réunions à venir</div>
+          </div>
+        </div>
+      </section>
+
+      {/* PHOTO STRIP */}
+      <section className="photo-strip">
+        <div className="photo-strip-inner">
+          <div className="photo-strip-main">
+            <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy – Maison d'Augustin" fill style={{ objectFit: 'cover', objectPosition: 'center 40%' }} sizes="(max-width: 768px) 100vw, 66vw" />
+          </div>
+          <div className="photo-strip-side">
+            <Image src="/photo-groupe.jpg" alt="Échange entre adhérents Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center' }} sizes="(max-width: 768px) 100vw, 33vw" />
           </div>
         </div>
       </section>
