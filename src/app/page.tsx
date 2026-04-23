@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getMembers } from '@/lib/members';
 import { getMeetings } from '@/lib/meetings';
 
@@ -53,6 +54,11 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* PHOTO BANNER */}
+      <div className="home-banner-photo">
+        <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} sizes="100vw" />
+      </div>
+
       {/* FEATURES */}
       <section className="section">
         <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
@@ -102,6 +108,16 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* PHOTO GALLERY */}
+      <div className="home-gallery">
+        <div className="home-gallery-item">
+          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 20%' }} sizes="(max-width: 768px) 100vw, 50vw" />
+        </div>
+        <div className="home-gallery-item">
+          <Image src="/photo-dejeuner-mer.jpg" alt="Déjeuner réseau vue mer" fill style={{ objectFit: 'cover', objectPosition: 'center 30%' }} sizes="(max-width: 768px) 100vw, 50vw" />
+        </div>
+      </div>
 
       {/* CTA */}
       <section className="cta-band">

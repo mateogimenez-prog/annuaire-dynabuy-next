@@ -923,6 +923,44 @@ label .req { color: var(--red); }
 
 .feature-card a:hover { text-decoration: underline; }
 
+/* ─── HOME PHOTOS ─── */
+.home-banner-photo {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+}
+
+.home-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 380px;
+  overflow: hidden;
+  gap: 3px;
+}
+
+.home-gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .home-banner-photo { height: 220px; }
+  .home-gallery { height: 240px; }
+}
+
+/* ─── REUNIONS BANNER ─── */
+.reunions-banner-photo {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .reunions-banner-photo { height: 180px; }
+}
+
 /* ─── MAP + PHOTOS SECTION ─── */
 .map-section { padding-top: 56px; padding-bottom: 56px; }
 
