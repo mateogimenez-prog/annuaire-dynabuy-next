@@ -1,8 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { getMembers } from '@/lib/members';
 import { getMeetings } from '@/lib/meetings';
-import NAquitaineMap from '@/components/ui/NAquitaineMap';
 
 export const revalidate = 60;
 
@@ -76,25 +74,6 @@ export default async function HomePage() {
             <h3>Carte & QR code</h3>
             <p>Retrouvez votre carte adhérent et transmettez vos coordonnées en un scan lors de vos réunions.</p>
             <Link href="/inscription">Rejoindre →</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* MAP + PHOTOS */}
-      <section className="section map-section">
-        <div className="map-photos-grid">
-          <div className="map-col">
-            <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Notre réseau en Nouvelle-Aquitaine</h2>
-            <p style={{ color: 'var(--muted)', marginBottom: '20px', fontSize: '0.95rem' }}>Les départements colorés indiquent la présence d&apos;adhérents.</p>
-            <NAquitaineMap members={members} />
-          </div>
-          <div className="map-photos-col">
-            <div className="map-photo-top">
-              <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 30%' }} sizes="(max-width: 768px) 100vw, 40vw" />
-            </div>
-            <div className="map-photo-bottom">
-              <Image src="/photo-dejeuner-mer.jpg" alt="Déjeuner réseau vue mer" fill style={{ objectFit: 'cover', objectPosition: 'center 40%' }} sizes="(max-width: 768px) 100vw, 40vw" />
-            </div>
           </div>
         </div>
       </section>
