@@ -20,7 +20,7 @@ function MemberCardVisualInner({ member }: { member: Member }) {
       <div className="card-body">
         <div className="card-info">
           <div className="card-avatar" style={{ background: color }}>{initials}</div>
-          <div className="card-name">{member.prenom} {member.nom}</div>
+          <div className="card-name">{member.prenom} {member.nom.toUpperCase()}</div>
           <div className="card-company">{member.entreprise}</div>
           <div className="card-sector"><span className="sector-badge">{member.secteur}</span></div>
           <div className="card-contacts">
@@ -83,7 +83,7 @@ function QRModal({ member, onClose }: { member: Member; onClose: () => void }) {
       <div style={{ textAlign: 'center', maxWidth: '340px', width: '100%', padding: '32px 24px', position: 'relative' }}>
         <button onClick={onClose} style={{ position: 'absolute', top: '-8px', right: 0, background: 'rgba(255,255,255,0.15)', border: 'none', color: 'white', width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
         <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 700, color: 'white', margin: '0 auto 14px' }}>{initials}</div>
-        <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'white', marginBottom: '4px' }}>{member.prenom} {member.nom}</div>
+        <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'white', marginBottom: '4px' }}>{member.prenom} {member.nom.toUpperCase()}</div>
         <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.65)', marginBottom: '20px' }}>{member.entreprise} · {member.ville}</div>
         <div style={{ background: 'white', borderRadius: '16px', padding: '20px', display: 'inline-block', marginBottom: '16px' }}>
           <QRCanvas value={generateVCard(member)} size={240} />
@@ -163,7 +163,7 @@ export default function MemberGrid({ initialMembers }: { initialMembers: Member[
                 <div className="member-header">
                   <div className="member-avatar" style={{ background: color }}>{initials}</div>
                   <div>
-                    <div className="member-name">{m.prenom} {m.nom}</div>
+                    <div className="member-name">{m.prenom} {m.nom.toUpperCase()}</div>
                     <div className="member-company">{m.entreprise}</div>
                   </div>
                 </div>
