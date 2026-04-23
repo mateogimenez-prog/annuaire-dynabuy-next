@@ -42,6 +42,11 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* PHOTO BANNER */}
+      <div className="home-banner-photo">
+        <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} sizes="100vw" />
+      </div>
+
       {/* STATS */}
       <section className="stats">
         <div className="stats-inner">
