@@ -167,6 +167,36 @@ export default async function HomePage() {
         </div>
       </div>
 
+      {/* NOTRE ÉQUIPE */}
+      <section className="section">
+        <h2 className="section-title">Notre équipe</h2>
+        <p className="section-sub">Une question ? Contactez directement l&apos;un de nos animateurs.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24, maxWidth: 800, margin: '0 auto' }}>
+          {[
+            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', color: '#b5294e' },
+            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', color: '#E8392A' },
+            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', color: '#c0392b' },
+          ].map(({ prenom, nom, email, tel, color }) => (
+            <div key={nom} style={{ background: 'white', borderRadius: 16, padding: '32px 24px 24px', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid #f0f0f0' }}>
+              <div style={{ width: 80, height: 80, borderRadius: '50%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem', fontWeight: 800, color: 'white', margin: '0 auto 16px', boxShadow: `0 0 0 4px white, 0 0 0 6px ${color}33` }}>
+                {prenom[0]}{nom[0]}
+              </div>
+              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--dark)', marginBottom: 14 }}>{prenom} {nom}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
+                <a href={`mailto:${email}`} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '0.85rem', color: 'var(--red)', textDecoration: 'none', fontWeight: 500 }}>
+                  <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  {email}
+                </a>
+                <a href={`tel:${tel.replace(/\./g, '')}`} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '0.85rem', color: 'var(--red)', textDecoration: 'none', fontWeight: 500 }}>
+                  <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.128.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                  {tel}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="cta-band">
         <h2>Rejoindre l&apos;annuaire</h2>
