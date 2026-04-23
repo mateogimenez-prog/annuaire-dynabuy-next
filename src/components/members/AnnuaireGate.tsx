@@ -7,7 +7,9 @@ import MemberGrid from './MemberGrid';
 export default function AnnuaireGate({ members }: { members: Member[] }) {
   const [unlocked, setUnlocked] = useState(false);
   const [code, setCode] = useState('');
+  const [engage, setEngage] = useState(false);
   const [error, setError] = useState('');
+  const [engageError, setEngageError] = useState('');
   const [checking, setChecking] = useState(false);
 
   useEffect(() => {
@@ -16,9 +18,14 @@ export default function AnnuaireGate({ members }: { members: Member[] }) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!code.trim()) return;
+    let hasError = false;
+    if (!code.trim()) { setError("Veuillez entrer votre code d'accès."); hasError = true; }
+    if (!engage) { setEngageError('Vous devez cocher cette case pour accéder à l\'annuaire.'); hasError = true; }
+    if (hasError) return;
+
     setChecking(true);
     setError('');
+    setEngageError('');
     const res = await fetch('/api/auth/check-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -36,24 +43,40 @@ export default function AnnuaireGate({ members }: { members: Member[] }) {
   if (unlocked) return <MemberGrid initialMembers={members} />;
 
   return (
-    <div style={{ maxWidth: 400, margin: '60px auto', padding: '40px 32px', background: 'white', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.08)', textAlign: 'center' }}>
-      <div style={{ fontSize: '2rem', marginBottom: 12 }}>🔒</div>
-      <div style={{ fontWeight: 800, fontSize: '1.3rem', marginBottom: 8, color: 'var(--dark)' }}>Accès réservé</div>
-      <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginBottom: 24 }}>
+    <div style={{ maxWidth: 460, margin: '60px auto', padding: '40px 32px', background: 'white', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
+      <div style={{ textAlign: 'center', fontSize: '2rem', marginBottom: 12 }}>🔒</div>
+      <div style={{ textAlign: 'center', fontWeight: 800, fontSize: '1.3rem', marginBottom: 8, color: 'var(--dark)' }}>Accès réservé</div>
+      <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.95rem', marginBottom: 24 }}>
         L&apos;annuaire est réservé aux adhérents Dynabuy.<br />Entrez votre code d&apos;accès pour continuer.
       </p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={code}
-          onChange={e => setCode(e.target.value)}
+          onChange={e => { setCode(e.target.value); setError(''); }}
           placeholder="Code d'accès"
-          style={{ width: '100%', padding: '10px 14px', border: `1.5px solid ${error ? '#fca5a5' : '#ddd'}`, borderRadius: 8, fontSize: '1rem', marginBottom: 12, boxSizing: 'border-box', textAlign: 'center', letterSpacing: 2 }}
+          style={{ width: '100%', padding: '10px 14px', border: `1.5px solid ${error ? '#fca5a5' : '#ddd'}`, borderRadius: 8, fontSize: '1rem', marginBottom: 4, boxSizing: 'border-box', textAlign: 'center', letterSpacing: 2 }}
           autoFocus
         />
-        {error && <div style={{ color: '#dc2626', fontSize: '0.9rem', marginBottom: 10 }}>{error}</div>}
-        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={checking}>
-          {checking ? 'Vérification…' : 'Accéder à l\'annuaire →'}
+        {error && <div style={{ color: '#dc2626', fontSize: '0.85rem', marginBottom: 8 }}>{error}</div>}
+
+        <div style={{ marginTop: 16, padding: '14px', background: '#f8fafc', borderRadius: 10, border: `1.5px solid ${engageError ? '#fca5a5' : '#e5e7eb'}` }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={engage}
+              onChange={e => { setEngage(e.target.checked); setEngageError(''); }}
+              style={{ marginTop: 3, width: 17, height: 17, flexShrink: 0, accentColor: 'var(--red)', cursor: 'pointer' }}
+            />
+            <span style={{ fontSize: '0.85rem', color: 'var(--dark)', lineHeight: 1.5 }}>
+              Je m&apos;engage à ne pas partager l&apos;accès à cet annuaire avec des personnes non adhérentes au réseau Dynabuy et à respecter les conditions d&apos;utilisation des données de ses membres.
+            </span>
+          </label>
+          {engageError && <div style={{ color: '#dc2626', fontSize: '0.82rem', marginTop: 8 }}>{engageError}</div>}
+        </div>
+
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 16 }} disabled={checking}>
+          {checking ? 'Vérification…' : "Accéder à l'annuaire →"}
         </button>
       </form>
     </div>
