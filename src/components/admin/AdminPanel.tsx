@@ -178,7 +178,7 @@ export default function AdminPanel() {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div style={{ gridColumn: '1 / -1' }}>
                   <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Titre *</label>
-                  <input className="form-input" value={form.titre} onChange={e => setForm(f => ({ ...f, titre: e.target.value }))} placeholder="Rencontre réseau – Bordeaux" required />
+                  <input className="form-input" value={form.titre} onChange={e => setForm(f => ({ ...f, titre: e.target.value }))} placeholder="Rencontre dirigeants – Bordeaux" required />
                 </div>
                 <div>
                   <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Date *</label>
