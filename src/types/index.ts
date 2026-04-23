@@ -9,6 +9,7 @@ export interface Member {
   email: string;
   tel: string;
   date: string;
+  bio?: string;
   created_at?: string;
 }
 

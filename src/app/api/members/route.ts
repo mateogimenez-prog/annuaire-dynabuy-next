@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase';
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { prenom, nom, entreprise, secteur, ville, email, tel, user_id, code } = body;
+  const { prenom, nom, entreprise, secteur, ville, email, tel, user_id, code, bio } = body;
 
   const validCode = process.env.REGISTRATION_CODE || 'DynabuyNA';
   if (!code || code.trim() !== validCode) {
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
   const { data, error } = await supabase
     .from('members')
-    .insert({ prenom, nom, entreprise, secteur, ville, email: email.toLowerCase(), tel, ...(user_id ? { user_id } : {}) })
+    .insert({ prenom, nom, entreprise, secteur, ville, email: email.toLowerCase(), tel, ...(user_id ? { user_id } : {}), ...(bio ? { bio } : {}) })
     .select()
     .single();
 

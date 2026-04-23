@@ -182,6 +182,11 @@ export default function MemberGrid({ initialMembers }: { initialMembers: Member[
                     <a href={`tel:${m.tel.replace(/\s/g, '')}`}>{m.tel}</a>
                   </div>
                 </div>
+                {m.bio && (
+                  <div style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: 1.5, margin: '8px 0', fontStyle: 'italic', borderTop: '1px solid #f0f0f0', paddingTop: 8 }}>
+                    &ldquo;{m.bio}&rdquo;
+                  </div>
+                )}
                 <div className="member-actions">
                   <button className="btn btn-sm btn-primary" style={{ flex: 1, justifyContent: 'center' }} onClick={() => setQrMember(m)}>
                     <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h.01M14 17h3M17 14v3M20 14h.01M20 20h.01"/></svg>

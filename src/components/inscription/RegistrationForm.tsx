@@ -7,11 +7,16 @@ import MemberCardVisual from './MemberCardVisual';
 import PersonalQR from './PersonalQR';
 import SuccessBox from './SuccessBox';
 
+const MAX_WORDS = 60;
+function countWords(text: string) {
+  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+}
+
 interface Fields {
   prenom: string; nom: string; entreprise: string;
   secteur: string; secteurLibre: string;
   ville: string; email: string; tel: string;
-  code: string;
+  code: string; bio: string;
 }
 
 interface Errors {
@@ -23,7 +28,7 @@ interface Errors {
 export default function RegistrationForm() {
   const [fields, setFields] = useState<Fields>({
     prenom: '', nom: '', entreprise: '', secteur: '', secteurLibre: '',
-    ville: '', email: '', tel: '', code: '',
+    ville: '', email: '', tel: '', code: '', bio: '',
   });
   const [errors, setErrors] = useState<Errors>({});
   const [rgpd, setRgpd] = useState(false);
@@ -65,6 +70,7 @@ export default function RegistrationForm() {
           prenom: fields.prenom, nom: fields.nom, entreprise: fields.entreprise,
           secteur, ville: fields.ville, email: fields.email, tel: fields.tel,
           code: fields.code.trim(),
+          ...(fields.bio.trim() ? { bio: fields.bio.trim() } : {}),
         }),
       });
 
@@ -140,6 +146,22 @@ export default function RegistrationForm() {
             <label>Téléphone <span className="req">*</span></label>
             <input className="form-input" type="tel" value={fields.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
             {err('tel')}
+          </div>
+          <div className="form-group full">
+            <label>Présentation <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '0.85rem' }}>(facultatif)</span></label>
+            <textarea
+              className="form-input"
+              style={{ resize: 'vertical', minHeight: 100, fontFamily: 'inherit', fontSize: '0.95rem' }}
+              value={fields.bio}
+              onChange={e => {
+                const val = e.target.value;
+                if (countWords(val) <= MAX_WORDS) setFields(f => ({ ...f, bio: val }));
+              }}
+              placeholder="Décrivez votre activité, votre expertise, ce que vous apportez au réseau…"
+            />
+            <div style={{ textAlign: 'right', fontSize: '0.8rem', color: countWords(fields.bio) >= MAX_WORDS ? 'var(--red)' : 'var(--muted)', marginTop: 4 }}>
+              {countWords(fields.bio)}/{MAX_WORDS} mots
+            </div>
           </div>
           <div className={`form-group full${errors.code ? ' has-error' : ''}`}>
             <label>Code d&apos;accès <span className="req">*</span></label>
