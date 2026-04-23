@@ -934,19 +934,21 @@ label .req { color: var(--red); }
 .home-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 380px;
+  height: 520px;
   overflow: hidden;
   gap: 3px;
 }
 
 .home-gallery-item {
   position: relative;
+  height: 520px;
   overflow: hidden;
 }
 
 @media (max-width: 640px) {
   .home-banner-photo { height: 220px; }
-  .home-gallery { height: 240px; }
+  .home-gallery { height: 360px; }
+  .home-gallery-item { height: 360px; }
 }
 
 /* ─── REUNIONS BANNER ─── */

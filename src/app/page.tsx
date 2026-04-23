@@ -112,19 +112,19 @@ export default async function HomePage() {
       {/* PHOTO GALLERY */}
       <div className="home-gallery">
         <div className="home-gallery-item">
-          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 20%' }} sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div className="home-gallery-item">
-          <Image src="/photo-dejeuner-mer.jpg" alt="Déjeuner réseau vue mer" fill style={{ objectFit: 'cover', objectPosition: 'center 30%' }} sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src="/photo-dejeuner-mer.jpg" alt="Déjeuner réseau vue mer" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
       </div>
 
       {/* CTA */}
       <section className="cta-band">
-        <h2>Pas encore dans l&apos;annuaire ?</h2>
-        <p>Rejoignez le réseau Dynabuy en quelques minutes et recevez votre carte adhérent avec QR code.</p>
+        <h2>Rejoindre l&apos;annuaire</h2>
+        <p>Trouvez le bon prestataire parmi nos adhérents ou inscrivez-vous pour vous faire connaître auprès de tous les entrepreneurs du réseau.</p>
         <Link href="/inscription" className="btn btn-white">
-          Rejoindre le réseau maintenant →
+          Rejoindre l&apos;annuaire →
         </Link>
       </section>
     </>
