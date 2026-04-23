@@ -55,8 +55,7 @@ export default async function HomePage() {
 
       {/* FEATURES */}
       <section className="section">
-        <h2 className="section-title">Tout ce dont votre réseau a besoin</h2>
-        <p className="section-sub">Une plateforme simple, pensée pour les adhérents Dynabuy.</p>
+        <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
         <div className="feature-row">
           <div className="feature-card">
             <div className="feature-icon">🔍</div>
@@ -73,7 +72,7 @@ export default async function HomePage() {
           <div className="feature-card">
             <div className="feature-icon">📱</div>
             <h3>Carte & QR code</h3>
-            <p>Chaque adhérent reçoit sa carte personnelle avec QR code. Scannez-vous mutuellement en réunion pour échanger vos contacts.</p>
+            <p>Retrouvez votre carte adhérent et transmettez vos coordonnées en un scan lors de vos réunions.</p>
             <Link href="/inscription">Rejoindre →</Link>
           </div>
         </div>
