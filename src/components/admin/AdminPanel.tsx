@@ -26,6 +26,9 @@ export default function AdminPanel() {
   // Members state
   const [members, setMembers] = useState<Member[]>([]);
   const [msgMember, setMsgMember] = useState('');
+  const [editMember, setEditMember] = useState<Member | null>(null);
+  const [editForm, setEditForm] = useState({ prenom: '', nom: '', entreprise: '', secteur: '', ville: '', email: '', tel: '' });
+  const [savingEdit, setSavingEdit] = useState(false);
 
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
@@ -66,6 +69,31 @@ export default function AdminPanel() {
     if (!confirm('Supprimer cette réunion ?')) return;
     await fetch('/api/admin/meetings', { method: 'DELETE', headers: headers(), body: JSON.stringify({ id }) });
     await loadMeetings();
+  }
+
+  function openEdit(m: Member) {
+    setEditMember(m);
+    setEditForm({ prenom: m.prenom, nom: m.nom, entreprise: m.entreprise, secteur: m.secteur, ville: m.ville, email: m.email, tel: m.tel });
+  }
+
+  async function handleSaveEdit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!editMember) return;
+    setSavingEdit(true);
+    const res = await fetch(`/api/admin/members/${editMember.id}`, {
+      method: 'PUT',
+      headers: headers(),
+      body: JSON.stringify(editForm),
+    });
+    setSavingEdit(false);
+    if (res.ok) {
+      setMsgMember('Membre mis à jour.');
+      setTimeout(() => setMsgMember(''), 3000);
+      setEditMember(null);
+      await loadMembers();
+    } else {
+      setMsgMember('Erreur lors de la mise à jour.');
+    }
   }
 
   async function handleDeleteMember(id: string, name: string) {
@@ -149,12 +177,20 @@ export default function AdminPanel() {
                     <div style={{ fontWeight: 600 }}>{m.prenom} {m.nom}</div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>{m.entreprise} · {m.ville} · {m.email}</div>
                   </div>
-                  <button
-                    onClick={() => handleDeleteMember(m.id, `${m.prenom} ${m.nom}`)}
-                    style={{ background: 'none', border: '1.5px solid #fca5a5', color: '#dc2626', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem', flexShrink: 0 }}
-                  >
-                    Supprimer
-                  </button>
+                  <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+                    <button
+                      onClick={() => openEdit(m)}
+                      style={{ background: 'none', border: '1.5px solid #93c5fd', color: '#2563eb', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      onClick={() => handleDeleteMember(m.id, `${m.prenom} ${m.nom}`)}
+                      style={{ background: 'none', border: '1.5px solid #fca5a5', color: '#dc2626', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontWeight: 600, fontSize: '0.85rem' }}
+                    >
+                      Supprimer
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -240,6 +276,45 @@ export default function AdminPanel() {
             </div>
           )}
         </>
+      )}
+      {/* MODALE ÉDITION MEMBRE */}
+      {editMember && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }} onClick={e => { if (e.target === e.currentTarget) setEditMember(null); }}>
+          <div style={{ background: 'white', borderRadius: 16, padding: 32, maxWidth: 520, width: '100%', boxShadow: '0 8px 40px rgba(0,0,0,0.2)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+              <h2 style={{ fontWeight: 700, fontSize: '1.2rem' }}>Modifier le membre</h2>
+              <button onClick={() => setEditMember(null)} style={{ background: 'none', border: 'none', fontSize: '1.3rem', cursor: 'pointer', color: '#999' }}>✕</button>
+            </div>
+            <form onSubmit={handleSaveEdit}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                {([
+                  { label: 'Prénom', key: 'prenom', full: false },
+                  { label: 'Nom', key: 'nom', full: false },
+                  { label: 'Entreprise', key: 'entreprise', full: true },
+                  { label: "Secteur d'activité", key: 'secteur', full: true },
+                  { label: 'Ville', key: 'ville', full: false },
+                  { label: 'Email', key: 'email', full: false },
+                  { label: 'Téléphone', key: 'tel', full: true },
+                ] as { label: string; key: keyof typeof editForm; full: boolean }[]).map(({ label, key, full }) => (
+                  <div key={key} style={{ gridColumn: full ? '1 / -1' : 'auto' }}>
+                    <label style={{ fontSize: '0.83rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>{label}</label>
+                    <input
+                      className="form-input"
+                      value={editForm[key]}
+                      onChange={e => setEditForm(f => ({ ...f, [key]: e.target.value }))}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 10, marginTop: 20 }}>
+                <button type="submit" className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }} disabled={savingEdit}>
+                  {savingEdit ? 'Enregistrement…' : 'Enregistrer'}
+                </button>
+                <button type="button" onClick={() => setEditMember(null)} className="btn btn-outline">Annuler</button>
+              </div>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );
