@@ -1,12 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const path = usePathname();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => setLoggedIn(!!session));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => setLoggedIn(!!session));
+    return () => subscription.unsubscribe();
+  }, []);
 
   const link = (href: string, label: string, btn?: boolean) => (
     <Link
@@ -32,7 +40,10 @@ export default function Nav() {
           {link('/', 'Accueil')}
           {link('/annuaire', 'Annuaire')}
           {link('/reunions', 'Réunions')}
-          {link('/inscription', "Rejoindre l'annuaire", true)}
+          {loggedIn
+            ? link('/profil', 'Mon Profil', true)
+            : link('/inscription', "Rejoindre l'annuaire", true)
+          }
         </div>
       </div>
     </nav>

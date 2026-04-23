@@ -1,5 +1,6 @@
 export interface Member {
   id: string;
+  user_id?: string;
   prenom: string;
   nom: string;
   entreprise: string;

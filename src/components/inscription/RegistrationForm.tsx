@@ -1,28 +1,32 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import type { Member } from '@/types';
 import { SECTORS } from '@/lib/utils';
-import SuccessBox from './SuccessBox';
-import PersonalQR from './PersonalQR';
-import MemberCardVisual from './MemberCardVisual';
+import { supabase } from '@/lib/supabase';
 
 interface Fields {
   prenom: string; nom: string; entreprise: string;
   secteur: string; secteurLibre: string;
   ville: string; email: string; tel: string;
+  password: string; passwordConfirm: string;
 }
 
 interface Errors {
   prenom?: string; nom?: string; entreprise?: string;
   secteur?: string; ville?: string; email?: string; tel?: string;
+  password?: string; passwordConfirm?: string; global?: string;
 }
 
 export default function RegistrationForm() {
-  const [fields, setFields] = useState<Fields>({ prenom: '', nom: '', entreprise: '', secteur: '', secteurLibre: '', ville: '', email: '', tel: '' });
+  const router = useRouter();
+  const [fields, setFields] = useState<Fields>({
+    prenom: '', nom: '', entreprise: '', secteur: '', secteurLibre: '',
+    ville: '', email: '', tel: '', password: '', passwordConfirm: '',
+  });
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
-  const [member, setMember] = useState<Member | null>(null);
 
   const set = (k: keyof Fields) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setFields(f => ({ ...f, [k]: e.target.value }));
@@ -32,11 +36,13 @@ export default function RegistrationForm() {
     if (!fields.prenom.trim()) e.prenom = 'Prénom requis';
     if (!fields.nom.trim()) e.nom = 'Nom requis';
     if (!fields.entreprise.trim()) e.entreprise = 'Entreprise requise';
-    const secteur = fields.secteur === 'Autre' ? fields.secteurLibre.trim() : fields.secteur;
+    const secteur = fields.secteur === 'Autres activités' ? fields.secteurLibre.trim() : fields.secteur;
     if (!secteur) e.secteur = "Secteur d'activité requis";
     if (!fields.ville.trim()) e.ville = 'Ville requise';
     if (!fields.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'Email invalide';
     if (!fields.tel.trim()) e.tel = 'Téléphone requis';
+    if (!fields.password || fields.password.length < 6) e.password = 'Mot de passe : 6 caractères minimum';
+    if (fields.password !== fields.passwordConfirm) e.passwordConfirm = 'Les mots de passe ne correspondent pas';
     return e;
   }
 
@@ -47,54 +53,60 @@ export default function RegistrationForm() {
     setErrors({});
     setSubmitting(true);
 
-    const secteur = fields.secteur === 'Autre' ? fields.secteurLibre.trim() : fields.secteur;
+    const secteur = fields.secteur === 'Autres activités' ? fields.secteurLibre.trim() : fields.secteur;
 
     try {
-      const res = await fetch('/api/members', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prenom: fields.prenom, nom: fields.nom, entreprise: fields.entreprise, secteur, ville: fields.ville, email: fields.email, tel: fields.tel }),
+      // 1. Créer le compte Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: fields.email.trim().toLowerCase(),
+        password: fields.password,
       });
-      const data = await res.json();
 
-      if (!res.ok) {
-        if (data.error === 'EMAIL_EXISTS') {
-          setErrors({ email: 'Cet email est déjà inscrit dans l\'annuaire.' });
+      if (authError) {
+        if (authError.message.includes('already registered')) {
+          setErrors({ email: 'Cet email est déjà utilisé. Connectez-vous.' });
         } else {
-          setErrors({ email: 'Une erreur est survenue. Réessayez.' });
+          setErrors({ global: authError.message });
         }
         return;
       }
-      setMember(data);
+
+      const user_id = authData.user?.id;
+
+      // 2. Créer le profil membre
+      const res = await fetch('/api/members', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prenom: fields.prenom, nom: fields.nom, entreprise: fields.entreprise,
+          secteur, ville: fields.ville, email: fields.email, tel: fields.tel,
+          user_id,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        if (data.error === 'EMAIL_EXISTS') setErrors({ email: 'Cet email est déjà dans l\'annuaire.' });
+        else setErrors({ global: 'Une erreur est survenue. Réessayez.' });
+        return;
+      }
+
+      // 3. Rediriger vers le profil
+      router.push('/profil');
     } finally {
       setSubmitting(false);
     }
-  }
-
-  if (member) {
-    return (
-      <>
-        <SuccessBox prenom={member.prenom} />
-        <PersonalQR member={member} />
-        <div style={{ marginTop: '24px' }}>
-          <h3 style={{ fontWeight: 700, marginBottom: '16px' }}>Votre carte adhérent</h3>
-          <MemberCardVisual member={member} />
-          <div style={{ textAlign: 'center', marginTop: '16px' }}>
-            <button className="btn btn-outline btn-sm" onClick={() => window.print()}>
-              <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-              Imprimer la carte
-            </button>
-          </div>
-        </div>
-      </>
-    );
   }
 
   const err = (k: keyof Errors) => errors[k] ? <span className="error-msg">{errors[k]}</span> : null;
 
   return (
     <div className="form-card">
-      <div className="form-title">Rejoindre l&apos;annuaire Dynabuy</div>
+      <div className="form-title">Créer mon profil Dynabuy</div>
+      <p style={{ color: 'var(--muted)', marginBottom: 20, fontSize: '0.9rem' }}>
+        Déjà inscrit ? <a href="/connexion" style={{ color: 'var(--red)', fontWeight: 600 }}>Se connecter</a>
+      </p>
+      {errors.global && <div style={{ background: '#fef2f2', border: '1px solid #fca5a5', color: '#dc2626', padding: '10px 14px', borderRadius: 8, marginBottom: 16, fontSize: '0.9rem' }}>{errors.global}</div>}
       <form onSubmit={handleSubmit} noValidate>
         <div className="form-grid">
           <div className={`form-group${errors.prenom ? ' has-error' : ''}`}>
@@ -118,7 +130,7 @@ export default function RegistrationForm() {
               <option value="">– Choisir un secteur –</option>
               {SECTORS.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
-            {fields.secteur === 'Autre' && (
+            {fields.secteur === 'Autres activités' && (
               <input className="form-input" style={{ marginTop: '8px' }} value={fields.secteurLibre} onChange={set('secteurLibre')} placeholder="Précisez votre secteur…" />
             )}
             {err('secteur')}
@@ -138,9 +150,19 @@ export default function RegistrationForm() {
             <input className="form-input" type="tel" value={fields.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
             {err('tel')}
           </div>
+          <div className={`form-group${errors.password ? ' has-error' : ''}`}>
+            <label>Mot de passe <span className="req">*</span></label>
+            <input className="form-input" type="password" value={fields.password} onChange={set('password')} placeholder="6 caractères minimum" />
+            {err('password')}
+          </div>
+          <div className={`form-group${errors.passwordConfirm ? ' has-error' : ''}`}>
+            <label>Confirmer le mot de passe <span className="req">*</span></label>
+            <input className="form-input" type="password" value={fields.passwordConfirm} onChange={set('passwordConfirm')} placeholder="Répétez le mot de passe" />
+            {err('passwordConfirm')}
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={submitting}>
-          {submitting ? 'Inscription en cours…' : "Rejoindre l'annuaire Dynabuy →"}
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }} disabled={submitting}>
+          {submitting ? 'Création en cours…' : 'Créer mon profil →'}
         </button>
       </form>
     </div>
