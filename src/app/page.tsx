@@ -170,7 +170,7 @@ export default async function HomePage() {
       {/* NOTRE ÉQUIPE */}
       <section className="section">
         <h2 className="section-title">Notre équipe</h2>
-        <p className="section-sub">Une question ? Contactez directement l&apos;un de nos animateurs.</p>
+        <p className="section-sub">Une question ? Contactez directement l&apos;un de nos référents.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24, maxWidth: 800, margin: '0 auto' }}>
           {[
             { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png', pos: 'center 25%' },

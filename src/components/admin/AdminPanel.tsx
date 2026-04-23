@@ -239,7 +239,7 @@ export default function AdminPanel() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Animateur</label>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Référent</label>
                   <input className="form-input" value={form.animateur} onChange={e => setForm(f => ({ ...f, animateur: e.target.value }))} placeholder="Michaël GIMENEZ" />
                 </div>
                 <div>
