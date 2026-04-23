@@ -17,7 +17,7 @@ interface Fields {
 interface Errors {
   prenom?: string; nom?: string; entreprise?: string;
   secteur?: string; ville?: string; email?: string; tel?: string;
-  code?: string; global?: string;
+  code?: string; rgpd?: string; global?: string;
 }
 
 export default function RegistrationForm() {
@@ -26,6 +26,7 @@ export default function RegistrationForm() {
     ville: '', email: '', tel: '', code: '',
   });
   const [errors, setErrors] = useState<Errors>({});
+  const [rgpd, setRgpd] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [member, setMember] = useState<Member | null>(null);
 
@@ -43,6 +44,7 @@ export default function RegistrationForm() {
     if (!fields.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'Email invalide';
     if (!fields.tel.trim()) e.tel = 'Téléphone requis';
     if (!fields.code.trim()) e.code = "Code d'accès requis";
+    if (!rgpd) e.rgpd = 'Vous devez accepter les conditions pour vous inscrire';
     return e;
   }
 
@@ -145,7 +147,23 @@ export default function RegistrationForm() {
             {err('code')}
           </div>
         </div>
-        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }} disabled={submitting}>
+
+        <div style={{ marginTop: 20, padding: '16px', background: '#f8fafc', borderRadius: 10, border: `1.5px solid ${errors.rgpd ? '#fca5a5' : '#e5e7eb'}` }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: 12, cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={rgpd}
+              onChange={e => setRgpd(e.target.checked)}
+              style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: 'var(--red)', cursor: 'pointer' }}
+            />
+            <span style={{ fontSize: '0.88rem', color: 'var(--dark)', lineHeight: 1.5 }}>
+              J&apos;accepte que mes informations professionnelles (nom, entreprise, secteur, ville, email, téléphone) soient partagées <strong>uniquement avec les adhérents Dynabuy</strong>, dans le but de développer mon activité et de favoriser les échanges commerciaux au sein du réseau. Conformément au RGPD, je peux demander la suppression de mes données à tout moment en contactant l&apos;administrateur.
+            </span>
+          </label>
+          {errors.rgpd && <div style={{ color: '#dc2626', fontSize: '0.85rem', marginTop: 8 }}>{errors.rgpd}</div>}
+        </div>
+
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 16 }} disabled={submitting}>
           {submitting ? 'Création en cours…' : "Rejoindre l'annuaire →"}
         </button>
       </form>
