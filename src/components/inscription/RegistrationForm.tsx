@@ -115,7 +115,7 @@ export default function RegistrationForm() {
           <div className={`form-group full${errors.secteur ? ' has-error' : ''}`}>
             <label>Secteur d&apos;activité <span className="req">*</span></label>
             <select className="form-select" value={fields.secteur} onChange={set('secteur')}>
-              <option value="">— Choisir un secteur —</option>
+              <option value="">– Choisir un secteur –</option>
               {SECTORS.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
             {fields.secteur === 'Autre' && (

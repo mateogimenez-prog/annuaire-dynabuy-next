@@ -9,7 +9,7 @@ export default function ReunionsPage() {
       <div className="page-header">
         <div className="page-header-inner">
           <h1>Prochaines réunions</h1>
-          <p>16 rencontres à venir en Nouvelle-Aquitaine — inscription sur rencontres-dirigeants.com</p>
+          <p>16 rencontres à venir en Nouvelle-Aquitaine – inscription sur rencontres-dirigeants.com</p>
         </div>
       </div>
       <div className="section">

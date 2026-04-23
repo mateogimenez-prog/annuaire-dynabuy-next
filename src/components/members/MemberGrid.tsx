@@ -44,7 +44,7 @@ function MemberCardVisualInner({ member }: { member: Member }) {
         </div>
       </div>
       <div className="card-footer">
-        Membre du réseau <span>Dynabuy</span> — dynabuy.fr
+        Membre du réseau <span>Dynabuy</span> – dynabuy.fr
       </div>
     </div>
   );

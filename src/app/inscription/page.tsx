@@ -7,7 +7,7 @@ export default function InscriptionPage() {
       <div className="page-header">
         <div className="page-header-inner">
           <h1>Rejoindre l&apos;annuaire</h1>
-          <p>Réservé aux adhérents Dynabuy — remplissez le formulaire pour apparaître dans l&apos;annuaire</p>
+          <p>Réservé aux adhérents Dynabuy – remplissez le formulaire pour apparaître dans l&apos;annuaire</p>
         </div>
       </div>
       <div className="page-layout">

@@ -15,7 +15,7 @@ export default function Footer() {
           <a href="https://www.dynabuy.fr" target="_blank" rel="noopener noreferrer">dynabuy.fr</a>
         </div>
       </div>
-      <p className="footer-copy">© 2026 Annuaire Dynabuy — Plateforme réservée aux adhérents</p>
+      <p className="footer-copy">© 2026 Annuaire Dynabuy – Plateforme réservée aux adhérents</p>
     </footer>
   );
 }

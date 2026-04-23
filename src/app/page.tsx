@@ -86,17 +86,17 @@ export default async function HomePage() {
           <div className="how-grid">
             <div className="how-card card">
               <div className="how-icon">📲</div>
-              <h3>1 — Inscrivez-vous</h3>
+              <h3>1 – Inscrivez-vous</h3>
               <p>Remplissez le formulaire en ligne. Votre fiche apparaît immédiatement dans l&apos;annuaire partagé.</p>
             </div>
             <div className="how-card card">
               <div className="how-icon">🤝</div>
-              <h3>2 — Échangez vos contacts</h3>
+              <h3>2 – Échangez vos contacts</h3>
               <p>Chaque adhérent dispose d&apos;un QR code personnel. Scannez-le pour ajouter le contact directement dans votre téléphone.</p>
             </div>
             <div className="how-card card">
               <div className="how-icon">🚀</div>
-              <h3>3 — Développez votre réseau</h3>
+              <h3>3 – Développez votre réseau</h3>
               <p>Participez aux déjeuners et événements pour renforcer vos relations et développer votre activité.</p>
             </div>
           </div>
