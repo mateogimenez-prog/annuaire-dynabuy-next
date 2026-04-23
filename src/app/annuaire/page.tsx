@@ -1,5 +1,5 @@
 import { getMembers } from '@/lib/members';
-import MemberGrid from '@/components/members/MemberGrid';
+import AnnuaireGate from '@/components/members/AnnuaireGate';
 
 export const revalidate = 60;
 
@@ -15,7 +15,7 @@ export default async function AnnuairePage() {
         </div>
       </div>
       <div className="section">
-        <MemberGrid initialMembers={members} />
+        <AnnuaireGate members={members} />
       </div>
     </>
   );
