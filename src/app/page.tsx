@@ -11,7 +11,13 @@ export default async function HomePage() {
   const sectors = new Set(members.map(m => m.secteur));
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const upcoming = meetings.filter(m => new Date(m.date + 'T23:59:59') >= today);
+  const upcoming = meetings
+    .filter(m => new Date(m.date + 'T00:00:00') >= today)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const nextMeeting = upcoming[0];
+  const daysUntilNext = nextMeeting
+    ? Math.ceil((new Date(nextMeeting.date + 'T00:00:00').getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    : null;
 
   return (
     <>
@@ -41,15 +47,29 @@ export default async function HomePage() {
         <div className="stats-inner">
           <div>
             <div className="stat-value">{members.length}</div>
-            <div className="stat-label">Adhérents actifs</div>
+            <div className="stat-label">Adhérents dans l&apos;annuaire</div>
           </div>
           <div>
             <div className="stat-value">{sectors.size}</div>
             <div className="stat-label">Secteurs représentés</div>
           </div>
           <div>
-            <div className="stat-value">{upcoming.length}</div>
-            <div className="stat-label">Réunions à venir</div>
+            {daysUntilNext === 0 ? (
+              <>
+                <div className="stat-value">Aujourd&apos;hui</div>
+                <div className="stat-label">Prochaine réunion</div>
+              </>
+            ) : daysUntilNext !== null ? (
+              <>
+                <div className="stat-value">J–{daysUntilNext}</div>
+                <div className="stat-label">Prochaine réunion dans {daysUntilNext} jour{daysUntilNext > 1 ? 's' : ''}</div>
+              </>
+            ) : (
+              <>
+                <div className="stat-value">–</div>
+                <div className="stat-label">Prochaine réunion</div>
+              </>
+            )}
           </div>
         </div>
       </section>
