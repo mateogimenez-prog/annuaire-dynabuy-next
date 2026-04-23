@@ -130,7 +130,7 @@ export default async function HomePage() {
           <Image src="/photo-lounge.jpg" alt="Rencontre réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
         <div className="home-gallery-item">
-          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="(max-width: 768px) 100vw, 50vw" />
+          <Image src="/photo-atelier.jpg" alt="Atelier réseau Dynabuy" fill style={{ objectFit: 'cover', objectPosition: 'center bottom' }} sizes="(max-width: 768px) 100vw, 50vw" />
         </div>
       </div>
 
