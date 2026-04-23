@@ -923,33 +923,30 @@ label .req { color: var(--red); }
 
 .feature-card a:hover { text-decoration: underline; }
 
-/* ─── PHOTO STRIP (homepage) ─── */
-.photo-strip { width: 100%; overflow: hidden; }
-.photo-strip-inner { display: flex; height: 380px; }
-.photo-strip-main { position: relative; flex: 2; }
-.photo-strip-side { position: relative; flex: 1; }
+/* ─── MAP + PHOTOS SECTION ─── */
+.map-section { padding-top: 56px; padding-bottom: 56px; }
 
-@media (max-width: 640px) {
-  .photo-strip-inner { height: 220px; }
-  .photo-strip-side { display: none; }
+.map-photos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
 }
 
-/* ─── REUNIONS PHOTO ─── */
-.reunions-photo { position: relative; width: 100%; height: 280px; overflow: hidden; }
-.reunions-photo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-  display: flex; align-items: flex-end; justify-content: center;
-  padding-bottom: 28px;
-}
-.reunions-photo-overlay span {
-  color: white; font-size: 1.15rem; font-weight: 600;
-  letter-spacing: 0.01em; text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
+.map-col { display: flex; flex-direction: column; }
 
-@media (max-width: 640px) {
-  .reunions-photo { height: 180px; }
-  .reunions-photo-overlay span { font-size: 0.95rem; }
+.map-wrap { position: relative; }
+.map-svg { width: 100%; max-width: 440px; height: auto; display: block; }
+.map-empty { text-align: center; color: var(--muted); font-size: 0.88rem; margin-top: 12px; }
+
+.map-photos-col { display: flex; flex-direction: column; gap: 16px; height: 520px; }
+.map-photo-top { position: relative; flex: 1; border-radius: 12px; overflow: hidden; }
+.map-photo-bottom { position: relative; flex: 1; border-radius: 12px; overflow: hidden; }
+
+@media (max-width: 768px) {
+  .map-photos-grid { grid-template-columns: 1fr; }
+  .map-svg { max-width: 320px; margin: 0 auto; }
+  .map-photos-col { height: 320px; flex-direction: row; }
 }
 
 /* ─── CTA BAND ─── */
