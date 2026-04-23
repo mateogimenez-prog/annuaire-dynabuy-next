@@ -79,6 +79,34 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* NEXT MEETING BANNER */}
+      {nextMeeting && (
+        <section style={{ background: 'var(--red)', padding: '28px 16px' }}>
+          <div style={{ maxWidth: 760, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 12, padding: '10px 16px', textAlign: 'center', flexShrink: 0 }}>
+                <div style={{ color: 'white', fontSize: '1.6rem', fontWeight: 900, lineHeight: 1 }}>
+                  {new Date(nextMeeting.date + 'T00:00:00').toLocaleDateString('fr-FR', { day: '2-digit' })}
+                </div>
+                <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>
+                  {new Date(nextMeeting.date + 'T00:00:00').toLocaleDateString('fr-FR', { month: 'short' })}
+                </div>
+              </div>
+              <div>
+                <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Prochain événement</div>
+                <div style={{ color: 'white', fontWeight: 800, fontSize: '1.1rem', lineHeight: 1.2 }}>{nextMeeting.titre}</div>
+                <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem', marginTop: 4 }}>
+                  📍 {nextMeeting.lieu}{nextMeeting.heure ? ` · ${nextMeeting.heure}` : ''}
+                </div>
+              </div>
+            </div>
+            <Link href="/reunions" style={{ background: 'white', color: 'var(--red)', fontWeight: 700, padding: '10px 22px', borderRadius: 10, textDecoration: 'none', fontSize: '0.95rem', flexShrink: 0, whiteSpace: 'nowrap' }}>
+              S&apos;inscrire →
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* FEATURES */}
       <section className="section">
         <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
