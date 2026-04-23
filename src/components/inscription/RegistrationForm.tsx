@@ -11,18 +11,19 @@ interface Fields {
   prenom: string; nom: string; entreprise: string;
   secteur: string; secteurLibre: string;
   ville: string; email: string; tel: string;
+  code: string;
 }
 
 interface Errors {
   prenom?: string; nom?: string; entreprise?: string;
   secteur?: string; ville?: string; email?: string; tel?: string;
-  global?: string;
+  code?: string; global?: string;
 }
 
 export default function RegistrationForm() {
   const [fields, setFields] = useState<Fields>({
     prenom: '', nom: '', entreprise: '', secteur: '', secteurLibre: '',
-    ville: '', email: '', tel: '',
+    ville: '', email: '', tel: '', code: '',
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -41,6 +42,7 @@ export default function RegistrationForm() {
     if (!fields.ville.trim()) e.ville = 'Ville requise';
     if (!fields.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) e.email = 'Email invalide';
     if (!fields.tel.trim()) e.tel = 'Téléphone requis';
+    if (!fields.code.trim()) e.code = "Code d'accès requis";
     return e;
   }
 
@@ -60,12 +62,14 @@ export default function RegistrationForm() {
         body: JSON.stringify({
           prenom: fields.prenom, nom: fields.nom, entreprise: fields.entreprise,
           secteur, ville: fields.ville, email: fields.email, tel: fields.tel,
+          code: fields.code.trim(),
         }),
       });
 
       const data = await res.json();
       if (!res.ok) {
-        if (data.error === 'EMAIL_EXISTS') setErrors({ email: 'Cet email est déjà dans l\'annuaire.' });
+        if (data.error === 'INVALID_CODE') setErrors({ code: "Code d'accès incorrect." });
+        else if (data.error === 'EMAIL_EXISTS') setErrors({ email: 'Cet email est déjà dans l\'annuaire.' });
         else setErrors({ global: 'Une erreur est survenue. Réessayez.' });
         return;
       }
@@ -135,9 +139,14 @@ export default function RegistrationForm() {
             <input className="form-input" type="tel" value={fields.tel} onChange={set('tel')} placeholder="06 12 34 56 78" />
             {err('tel')}
           </div>
+          <div className={`form-group full${errors.code ? ' has-error' : ''}`}>
+            <label>Code d&apos;accès <span className="req">*</span></label>
+            <input className="form-input" value={fields.code} onChange={set('code')} placeholder="Code fourni par Dynabuy" />
+            {err('code')}
+          </div>
         </div>
         <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }} disabled={submitting}>
-          {submitting ? 'Création en cours…' : 'Rejoindre l\'annuaire →'}
+          {submitting ? 'Création en cours…' : "Rejoindre l'annuaire →"}
         </button>
       </form>
     </div>
