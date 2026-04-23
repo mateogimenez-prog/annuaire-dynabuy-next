@@ -173,13 +173,13 @@ export default async function HomePage() {
         <p className="section-sub">Une question ? Contactez directement l&apos;un de nos animateurs.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24, maxWidth: 800, margin: '0 auto' }}>
           {[
-            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', color: '#b5294e' },
-            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', color: '#E8392A' },
-            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', color: '#c0392b' },
-          ].map(({ prenom, nom, email, tel, color }) => (
+            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png' },
+            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', photo: '/team-michael.png' },
+            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', photo: '/team-tanguy.png' },
+          ].map(({ prenom, nom, email, tel, photo }) => (
             <div key={nom} style={{ background: 'white', borderRadius: 16, padding: '32px 24px 24px', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid #f0f0f0' }}>
-              <div style={{ width: 80, height: 80, borderRadius: '50%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem', fontWeight: 800, color: 'white', margin: '0 auto 16px', boxShadow: `0 0 0 4px white, 0 0 0 6px ${color}33` }}>
-                {prenom[0]}{nom[0]}
+              <div style={{ width: 90, height: 90, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 16px', boxShadow: '0 0 0 3px white, 0 0 0 5px var(--red)' }}>
+                <Image src={photo} alt={`${prenom} ${nom}`} width={90} height={90} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
               </div>
               <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--dark)', marginBottom: 14 }}>{prenom} {nom}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
