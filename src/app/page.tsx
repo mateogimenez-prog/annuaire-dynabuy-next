@@ -43,7 +43,7 @@ export default async function HomePage() {
       </section>
 
       {/* DYNABUY EN CHIFFRES */}
-      <section style={{ background: '#f8f9fc', padding: '48px 16px' }}>
+      <section style={{ background: 'white', padding: '48px 16px' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
           <h2 className="section-title" style={{ marginBottom: 32 }}>Dynabuy en chiffres</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
@@ -129,7 +129,7 @@ export default async function HomePage() {
       )}
 
       {/* FEATURES */}
-      <section className="section">
+      <section className="section" style={{ background: 'var(--blue-bg)' }}>
         <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
         <div className="feature-row">
           <div className="feature-card">
