@@ -10,7 +10,9 @@ export default function MeetingList({ meetings }: { meetings: Meeting[] }) {
   if (upcoming.length === 0) {
     return (
       <div className="empty-state">
-        <div className="empty-state-icon">📅</div>
+        <div className="empty-state-icon">
+          <svg width="56" height="56" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+        </div>
         <h3>Aucune réunion à venir</h3>
         <p>Consultez <a href="https://www.rencontres-dirigeants.com/nos-rencontres" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--red)' }}>rencontres-dirigeants.com</a> pour les prochaines dates.</p>
       </div>

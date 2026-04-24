@@ -96,7 +96,7 @@ export default async function HomePage() {
                 <div style={{ color: 'var(--red)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Prochain événement</div>
                 <div style={{ color: 'white', fontWeight: 800, fontSize: '1.1rem', lineHeight: 1.2 }}>{nextMeeting.titre}</div>
                 <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.9rem', marginTop: 4 }}>
-                  📍 {nextMeeting.lieu}{nextMeeting.heure ? ` · ${nextMeeting.heure}` : ''}
+                  <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth="2" viewBox="0 0 24 24" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }}><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{nextMeeting.lieu}{nextMeeting.heure ? ` · ${nextMeeting.heure}` : ''}
                 </div>
               </div>
             </div>

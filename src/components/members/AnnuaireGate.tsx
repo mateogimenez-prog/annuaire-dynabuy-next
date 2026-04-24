@@ -44,7 +44,9 @@ export default function AnnuaireGate({ members }: { members: Member[] }) {
 
   return (
     <div style={{ maxWidth: 460, margin: '60px auto', padding: '40px 32px', background: 'white', borderRadius: 16, boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
-      <div style={{ textAlign: 'center', fontSize: '2rem', marginBottom: 12 }}>🔒</div>
+      <div style={{ textAlign: 'center', marginBottom: 12, display: 'flex', justifyContent: 'center' }}>
+        <svg width="40" height="40" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
       <div style={{ textAlign: 'center', fontWeight: 800, fontSize: '1.3rem', marginBottom: 8, color: 'var(--dark)' }}>Accès réservé</div>
       <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.95rem', marginBottom: 24 }}>
         L&apos;annuaire est réservé aux adhérents Dynabuy.<br />Entrez votre code d&apos;accès pour continuer.

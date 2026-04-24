@@ -17,7 +17,7 @@ export default function PersonalQR({ member }: { member: Member }) {
         <QRCanvas value={generateVCard(member)} size={220} />
       </div>
       <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.5 }}>
-        📲 Montrez ce QR code en réunion pour<br />partager vos coordonnées instantanément
+        <svg width="15" height="15" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" viewBox="0 0 24 24" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }}><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h.01M14 17h3M17 14v3M20 14h.01M20 20h.01"/></svg>Montrez ce QR code en réunion pour<br />partager vos coordonnées instantanément
       </div>
     </div>
   );

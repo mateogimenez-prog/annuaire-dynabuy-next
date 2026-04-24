@@ -89,14 +89,14 @@ function QRModal({ member, onClose }: { member: Member; onClose: () => void }) {
           <QRCanvas value={generateVCard(member)} size={240} />
         </div>
         <div style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem', lineHeight: 1.5 }}>
-          📲 Scannez ce code pour ajouter<br />mes coordonnées dans vos contacts
+          <svg width="15" height="15" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="2" viewBox="0 0 24 24" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }}><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h.01M14 17h3M17 14v3M20 14h.01M20 20h.01"/></svg>Scannez ce code pour ajouter<br />mes coordonnées dans vos contacts
         </div>
         <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
           <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-            <span>📧</span><span>{member.email}</span>
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>{member.email}</span>
           </div>
           <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-            <span>📞</span><span>{member.tel}</span>
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.128.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 22 16.92Z"/></svg><span>{member.tel}</span>
           </div>
         </div>
       </div>
@@ -149,7 +149,9 @@ export default function MemberGrid({ initialMembers }: { initialMembers: Member[
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-state-icon">🔍</div>
+          <div className="empty-state-icon">
+            <svg width="56" height="56" fill="none" stroke="var(--red)" strokeWidth="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
           <h3>Aucun résultat</h3>
           <p>Essayez un autre terme ou secteur d&apos;activité.</p>
         </div>
