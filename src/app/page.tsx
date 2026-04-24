@@ -46,24 +46,18 @@ export default async function HomePage() {
       <section style={{ background: 'white', padding: '48px 16px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <h2 className="section-title" style={{ marginBottom: 32 }}>Dynabuy en chiffres</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'center' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-              {[
-                { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>, value: '+300 000', label: 'Entreprises bénéficient de la centrale d\'achats' },
-                { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: '+260 000', label: 'Salariés bénéficiaires du CSE externalisé' },
-                { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>, value: '+120', label: 'Agences partout en France' },
-                ].map(({ icon, value, label }) => (
-                <div key={label} style={{ background: 'white', borderRadius: 16, padding: '28px 24px', textAlign: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
-                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>{icon}</div>
-                  <div style={{ fontSize: '1.9rem', fontWeight: 900, color: 'var(--dark)', marginBottom: 6, letterSpacing: '-0.5px' }}>{value}</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>{label}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-              <Image src="/carte-nouvelle-aquitaine.png" alt="Carte Nouvelle-Aquitaine – Gironde, Landes, Pyrénées-Atlantiques" width={220} height={280} style={{ objectFit: 'contain' }} />
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textAlign: 'center', maxWidth: 200, lineHeight: 1.4 }}>Gironde · Landes · Pyrénées-Atlantiques</p>
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+            {[
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>, value: '+300 000', label: 'Entreprises bénéficient de la centrale d\'achats' },
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: '+260 000', label: 'Salariés bénéficiaires du CSE externalisé' },
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>, value: '+120', label: 'Agences partout en France' },
+            ].map(({ icon, value, label }) => (
+              <div key={label} style={{ background: 'white', borderRadius: 16, padding: '28px 24px', textAlign: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>{icon}</div>
+                <div style={{ fontSize: '1.9rem', fontWeight: 900, color: 'var(--dark)', marginBottom: 6, letterSpacing: '-0.5px' }}>{value}</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>{label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
