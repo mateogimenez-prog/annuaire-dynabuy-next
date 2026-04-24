@@ -80,6 +80,9 @@ export function getDateParts(dateStr: string): { day: number; month: string } {
 
 export function getFormatLabel(meeting: Meeting): string {
   if (meeting.format === 'Repas') return 'Repas';
+  if (meeting.format === 'Distanciel') return 'En ligne';
+  if (meeting.format === 'Soirée' || meeting.format === 'Loisir') return 'Soirée';
+  if (meeting.format === 'Évènementiel') return 'Évènement';
   const [h, min] = (meeting.fin || '12h00').split('h').map(Number);
   const finMin = h * 60 + (min || 0);
   if (finMin <= 12 * 60) return 'Matinale';
