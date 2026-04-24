@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Nav() {
@@ -22,8 +23,7 @@ export default function Nav() {
     <nav className="nav">
       <div className="nav-inner">
         <Link href="/" className="nav-logo">
-          <div className="logo-icon">D</div>
-          <span>Annuaire Dynabuy</span>
+          <Image src="/logo-dynabuy.png" alt="Dynabuy" width={120} height={40} style={{ objectFit: 'contain' }} />
         </Link>
         <button className="hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu">
           <span /><span /><span />
