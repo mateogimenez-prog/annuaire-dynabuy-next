@@ -138,6 +138,56 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* DYNABUY EN CHIFFRES */}
+      <section style={{ background: '#f8f9fc', padding: '48px 16px' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          <h2 className="section-title" style={{ marginBottom: 32 }}>Dynabuy en chiffres</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
+            {[
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>, value: '+300 000', label: 'Entreprises bénéficient de la centrale d\'achats' },
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, value: '+260 000', label: 'Salariés bénéficiaires du CSE externalisé' },
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>, value: '+120', label: 'Agences partout en France' },
+              { icon: <svg width="32" height="32" fill="none" stroke="var(--red)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>, value: 'Depuis 2009', label: 'Leader des réseaux d\'entrepreneurs' },
+            ].map(({ icon, value, label }) => (
+              <div key={label} style={{ background: 'white', borderRadius: 16, padding: '28px 24px', textAlign: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>{icon}</div>
+                <div style={{ fontSize: '1.9rem', fontWeight: 900, color: 'var(--dark)', marginBottom: 6, letterSpacing: '-0.5px' }}>{value}</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AVANTAGES MEMBRES */}
+      <section className="section">
+        <h2 className="section-title">Vos avantages en tant qu&apos;adhérent</h2>
+        <p className="section-sub">En rejoignant Dynabuy, vous accédez à bien plus qu&apos;un réseau d&apos;entrepreneurs.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, maxWidth: 900, margin: '0 auto' }}>
+          <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
+            <div style={{ width: 48, height: 48, background: 'var(--red-light)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 style={{ fontWeight: 800, fontSize: '1rem', marginBottom: 8, color: 'var(--dark)' }}>CSE externalisé</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>Offrez à vos salariés tous les avantages d&apos;un grand CSE : réductions loisirs, vacances, culture, courses… jusqu&apos;à <strong>1 200 € d&apos;économies</strong> par an et par foyer.</p>
+          </div>
+          <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
+            <div style={{ width: 48, height: 48, background: 'var(--red-light)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3 style={{ fontWeight: 800, fontSize: '1rem', marginBottom: 8, color: 'var(--dark)' }}>CE – Avantages salariés</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>Accès à la plateforme <strong>Avantages Privés</strong> : Center Parcs, Airbnb, Pathé, Fnac, Carrefour… Des centaines d&apos;offres négociées pour tous vos collaborateurs.</p>
+          </div>
+          <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
+            <div style={{ width: 48, height: 48, background: 'var(--red-light)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3 style={{ fontWeight: 800, fontSize: '1rem', marginBottom: 8, color: 'var(--dark)' }}>Parrainage – 10 %</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>Recommandez Dynabuy à un confrère et bénéficiez d&apos;une <strong>remise de 10 %</strong> sur votre cotisation. Un réseau qui grandit, c&apos;est un réseau qui vous récompense.</p>
+          </div>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
       <section style={{ background: 'var(--blue-bg)', padding: 0 }}>
         <div className="section">
