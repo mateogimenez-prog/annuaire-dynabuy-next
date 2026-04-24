@@ -162,26 +162,26 @@ export default async function HomePage() {
       <section className="section" style={{ maxWidth: '100%' }}>
         <h2 className="section-title">Vos avantages en tant qu&apos;adhérent</h2>
         <p className="section-sub">En rejoignant Dynabuy, vous accédez à bien plus qu&apos;un réseau d&apos;entrepreneurs.</p>
-        <div className="feature-row">
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div className="how-grid">
+          <div className="how-card card">
+            <div className="how-icon">
+              <svg width="26" height="26" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <h3>CSE externalisé</h3>
             <p>Réductions loisirs, vacances, culture et courses pour vos salariés. Jusqu&apos;à <strong>1 200 € d&apos;économies</strong> par foyer et par an.</p>
-            <a href="https://www.avantages-prives.com/connexion" target="_blank" rel="noopener noreferrer">Accéder à Avantages Privés →</a>
+            <a href="https://www.avantages-prives.com/connexion" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 12, fontSize: '0.85rem', fontWeight: 700, color: 'var(--red)', textDecoration: 'none' }}>Accéder à Avantages Privés →</a>
           </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <div className="how-card card">
+            <div className="how-icon">
+              <svg width="26" height="26" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
             <h3>CE – Avantages Entreprises</h3>
             <p>Économisez sur vos achats pros grâce à la centrale <strong>Avantages Entreprises</strong> : énergie, téléphonie, fournitures et plus.</p>
-            <a href="https://www.avantages-entreprises.com/connexion" target="_blank" rel="noopener noreferrer">Accéder à Avantages Entreprises →</a>
+            <a href="https://www.avantages-entreprises.com/connexion" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: 12, fontSize: '0.85rem', fontWeight: 700, color: 'var(--red)', textDecoration: 'none' }}>Accéder à Avantages Entreprises →</a>
           </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div className="how-card card">
+            <div className="how-icon">
+              <svg width="26" height="26" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <h3>Parrainage – 10 %</h3>
             <p>Recommandez Dynabuy et bénéficiez d&apos;une <strong>remise de 10 %</strong> sur votre cotisation à chaque parrainage.</p>
