@@ -159,10 +159,10 @@ export default async function HomePage() {
       </section>
 
       {/* AVANTAGES MEMBRES */}
-      <section className="section">
+      <section className="section" style={{ maxWidth: '100%' }}>
         <h2 className="section-title">Vos avantages en tant qu&apos;adhérent</h2>
         <p className="section-sub">En rejoignant Dynabuy, vous accédez à bien plus qu&apos;un réseau d&apos;entrepreneurs.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, maxWidth: 900, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ background: 'white', borderRadius: 16, padding: '28px 24px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', border: '1px solid #eef0f4' }}>
             <div style={{ width: 48, height: 48, background: 'var(--red-light)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
               <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
