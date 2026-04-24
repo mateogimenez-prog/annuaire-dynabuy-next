@@ -195,7 +195,7 @@ export default async function HomePage() {
       <section style={{ background: 'var(--blue-bg)', padding: 0 }}>
         <div className="section">
           <h2 className="section-title">Comment ça marche ?</h2>
-          <p className="section-sub">En 3 étapes pour intégrer et utiliser le réseau.</p>
+          <p className="section-sub">En 3 étapes pour rejoindre l&apos;annuaire et développer vos contacts.</p>
           <div className="how-grid">
             <div className="how-card card">
               <div className="how-icon">
