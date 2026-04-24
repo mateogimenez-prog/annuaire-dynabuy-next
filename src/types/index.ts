@@ -20,6 +20,7 @@ export interface Meeting {
   heure: string;
   fin: string;
   lieu: string;
+  adresse?: string;
   format: string;
   animateur: string;
   prix: string;
