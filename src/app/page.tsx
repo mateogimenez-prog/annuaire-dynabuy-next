@@ -128,32 +128,34 @@ export default async function HomePage() {
       )}
 
       {/* FEATURES */}
-      <section className="section" style={{ background: 'var(--blue-bg)' }}>
-        <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
-        <div className="feature-row">
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <section style={{ background: 'var(--blue-bg)', padding: 0 }}>
+        <div className="section">
+          <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
+          <div className="feature-row">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>Annuaire des membres</h3>
+              <p>Recherchez un adhérent par nom, entreprise ou secteur d&apos;activité. Contactez directement par email ou téléphone.</p>
+              <Link href="/annuaire">Accéder à l&apos;annuaire →</Link>
             </div>
-            <h3>Annuaire des membres</h3>
-            <p>Recherchez un adhérent par nom, entreprise ou secteur d&apos;activité. Contactez directement par email ou téléphone.</p>
-            <Link href="/annuaire">Accéder à l&apos;annuaire →</Link>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+              </div>
+              <h3>Réunions & événements</h3>
+              <p>Consultez les prochaines réunions réseau et inscrivez-vous en ligne. Ne manquez plus aucun événement.</p>
+              <Link href="/reunions">Voir les réunions →</Link>
             </div>
-            <h3>Réunions & événements</h3>
-            <p>Consultez les prochaines réunions réseau et inscrivez-vous en ligne. Ne manquez plus aucun événement.</p>
-            <Link href="/reunions">Voir les réunions →</Link>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h2v2h-2zM18 14h3M14 18v3M18 18h3v3h-3z"/></svg>
+            <div className="feature-card">
+              <div className="feature-icon">
+                <svg width="24" height="24" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h2v2h-2zM18 14h3M14 18v3M18 18h3v3h-3z"/></svg>
+              </div>
+              <h3>Carte & QR code</h3>
+              <p>Retrouvez votre carte adhérent et transmettez vos coordonnées en un scan lors de vos réunions.</p>
+              <Link href="/inscription">Rejoindre →</Link>
             </div>
-            <h3>Carte & QR code</h3>
-            <p>Retrouvez votre carte adhérent et transmettez vos coordonnées en un scan lors de vos réunions.</p>
-            <Link href="/inscription">Rejoindre →</Link>
           </div>
         </div>
       </section>
