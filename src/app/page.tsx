@@ -185,15 +185,15 @@ export default async function HomePage() {
         <p className="section-sub">Une question ? Contactez directement l&apos;un de nos référents.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 24, maxWidth: 800, margin: '0 auto' }}>
           {[
-            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png', pos: 'center 25%' },
-            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', photo: '/team-michael.png', pos: 'center 35%' },
-            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', photo: '/team-tanguy.png', pos: 'center 20%' },
-          ].map(({ prenom, nom, email, tel, photo, pos }) => (
+            { prenom: 'Patricia', nom: 'GRATAS', email: 'pgratas@dynabuy-oxycom.fr', tel: '06.19.67.62.23', photo: '/team-patricia.png', pos: 'center 25%', linkedin: 'https://www.linkedin.com/in/patricia-gratas-oxycom/' },
+            { prenom: 'Michaël', nom: 'GIMENEZ', email: 'mgimenez@dynabuy-oxycom.fr', tel: '06.61.45.23.56', photo: '/team-michael.png', pos: 'center 35%', linkedin: 'https://www.linkedin.com/in/micha%C3%ABl-gimenez-29719926b/' },
+            { prenom: 'Tanguy', nom: 'BARICAULT', email: 'tbaricault@dynabuy-oxycom.fr', tel: '07.85.71.04.52', photo: '/team-tanguy.png', pos: 'center 20%', linkedin: 'https://www.linkedin.com/in/tanguy-baricault/' },
+          ].map(({ prenom, nom, email, tel, photo, pos, linkedin }) => (
             <div key={nom} style={{ background: 'white', borderRadius: 16, padding: '32px 24px 24px', textAlign: 'center', boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid #f0f0f0' }}>
-              <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 16px', boxShadow: '0 0 0 3px white, 0 0 0 5px var(--red)' }}>
+              <a href={linkedin} target="_blank" rel="noopener noreferrer" style={{ display: 'block', width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', margin: '0 auto 16px', boxShadow: '0 0 0 3px white, 0 0 0 5px var(--red)', cursor: 'pointer' }}>
                 <Image src={photo} alt={`${prenom} ${nom}`} width={100} height={100} style={{ objectFit: 'cover', objectPosition: pos, width: '100%', height: '100%', transform: 'scale(1.35)', transformOrigin: pos }} />
-              </div>
-              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--dark)', marginBottom: 14 }}>{prenom} {nom}</div>
+              </a>
+              <a href={linkedin} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--dark)', marginBottom: 14, textDecoration: 'none', display: 'block' }}>{prenom} {nom}</a>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
                 <a href={`mailto:${email}`} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: '0.85rem', color: 'var(--red)', textDecoration: 'none', fontWeight: 500 }}>
                   <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
