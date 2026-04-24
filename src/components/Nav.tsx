@@ -22,8 +22,9 @@ export default function Nav() {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <Link href="/" className="nav-logo">
+        <Link href="/" className="nav-logo" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <Image src="/logo-dynabuy.png" alt="Dynabuy" width={120} height={40} style={{ objectFit: 'contain' }} />
+          <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', letterSpacing: '0.5px', borderLeft: '1px solid #ddd', paddingLeft: 10 }}>Annuaire</span>
         </Link>
         <button className="hamburger" onClick={() => setOpen(o => !o)} aria-label="Menu">
           <span /><span /><span />
