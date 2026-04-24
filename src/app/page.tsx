@@ -129,7 +129,7 @@ export default async function HomePage() {
       )}
 
       {/* FEATURES */}
-      <section className="section" style={{ background: 'var(--blue-bg)' }}>
+      <section className="section" style={{ background: 'var(--blue-bg)', maxWidth: '100%' }}>
         <h2 className="section-title">Trouvez ce qu&apos;il vous faut</h2>
         <div className="feature-row">
           <div className="feature-card">
