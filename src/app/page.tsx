@@ -163,7 +163,7 @@ export default async function HomePage() {
       {/* AVANTAGES MEMBRES */}
       <section className="section">
         <h2 className="section-title">Vos avantages en tant qu&apos;adhérent</h2>
-        <p className="section-sub">En rejoignant Dynabuy, vous accédez à bien plus qu&apos;un réseau d&apos;entrepreneurs.</p>
+        <p className="section-sub">Des avantages exclusifs inclus dans votre adhésion.</p>
         <div className="how-grid">
           <div className="how-card card">
             <div className="how-icon">
