@@ -10,12 +10,9 @@ export default async function ReunionsPage() {
   return (
     <>
       <div className="page-header">
-        <div className="page-header-inner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' }}>
-          <div>
-            <h1>Prochaines réunions</h1>
-            <p>{upcomingCount} événement{upcomingCount > 1 ? 's' : ''} à venir · Inscriptions en ligne</p>
-          </div>
-          <Image src="/carte-nouvelle-aquitaine.png" alt="Gironde · Landes · Pyrénées-Atlantiques" width={110} height={140} style={{ objectFit: 'contain', opacity: 0.9 }} />
+        <div className="page-header-inner">
+          <h1>Prochaines réunions</h1>
+          <p>{upcomingCount} événement{upcomingCount > 1 ? 's' : ''} à venir · Inscriptions en ligne</p>
         </div>
       </div>
       <div className="reunions-banner-photo">
