@@ -159,7 +159,7 @@ export default async function HomePage() {
       </section>
 
       {/* AVANTAGES MEMBRES */}
-      <section className="section" style={{ maxWidth: '100%' }}>
+      <section className="section">
         <h2 className="section-title">Vos avantages en tant qu&apos;adhérent</h2>
         <p className="section-sub">En rejoignant Dynabuy, vous accédez à bien plus qu&apos;un réseau d&apos;entrepreneurs.</p>
         <div className="how-grid">
