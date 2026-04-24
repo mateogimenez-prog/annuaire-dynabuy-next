@@ -4,13 +4,15 @@ import MeetingList from '@/components/reunions/MeetingList';
 
 export default async function ReunionsPage() {
   const meetings = await getMeetings();
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const upcomingCount = meetings.filter(m => new Date(m.date + 'T23:59:59') >= today).length;
 
   return (
     <>
       <div className="page-header">
         <div className="page-header-inner">
           <h1>Prochaines réunions</h1>
-          <p>16 rencontres à venir en Nouvelle-Aquitaine – inscription sur rencontres-dirigeants.com</p>
+          <p>{upcomingCount} événement{upcomingCount > 1 ? 's' : ''} à venir · Inscriptions en ligne</p>
         </div>
       </div>
       <div className="reunions-banner-photo">
