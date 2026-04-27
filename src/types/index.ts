@@ -10,6 +10,7 @@ export interface Member {
   tel: string;
   date: string;
   bio?: string;
+  site_web?: string;
   created_at?: string;
 }
 

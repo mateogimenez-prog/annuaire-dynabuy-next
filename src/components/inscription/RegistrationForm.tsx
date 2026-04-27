@@ -16,7 +16,7 @@ interface Fields {
   prenom: string; nom: string; entreprise: string;
   secteur: string; secteurLibre: string;
   ville: string; email: string; tel: string;
-  code: string; bio: string;
+  code: string; bio: string; site_web: string;
 }
 
 interface Errors {
@@ -28,7 +28,7 @@ interface Errors {
 export default function RegistrationForm() {
   const [fields, setFields] = useState<Fields>({
     prenom: '', nom: '', entreprise: '', secteur: '', secteurLibre: '',
-    ville: '', email: '', tel: '', code: '', bio: '',
+    ville: '', email: '', tel: '', code: '', bio: '', site_web: '',
   });
   const [errors, setErrors] = useState<Errors>({});
   const [rgpd, setRgpd] = useState(false);
@@ -71,6 +71,7 @@ export default function RegistrationForm() {
           secteur, ville: fields.ville, email: fields.email, tel: fields.tel,
           code: fields.code.trim(),
           ...(fields.bio.trim() ? { bio: fields.bio.trim() } : {}),
+          ...(fields.site_web.trim() ? { site_web: fields.site_web.trim() } : {}),
         }),
       });
 
@@ -163,6 +164,10 @@ export default function RegistrationForm() {
               {countWords(fields.bio)}/{MAX_WORDS} mots
             </div>
           </div>
+          <div className="form-group full">
+            <label>Site web <span style={{ color: 'var(--muted)', fontWeight: 400, fontSize: '0.85rem' }}>(facultatif)</span></label>
+            <input className="form-input" type="url" value={fields.site_web} onChange={set('site_web')} placeholder="https://www.monsite.fr" />
+          </div>
           <div className={`form-group full${errors.code ? ' has-error' : ''}`}>
             <label>Code d&apos;accès <span className="req">*</span></label>
             <input className="form-input" value={fields.code} onChange={set('code')} placeholder="Code fourni par Dynabuy" />
@@ -179,7 +184,7 @@ export default function RegistrationForm() {
               style={{ marginTop: 3, width: 18, height: 18, flexShrink: 0, accentColor: 'var(--red)', cursor: 'pointer' }}
             />
             <span style={{ fontSize: '0.88rem', color: 'var(--dark)', lineHeight: 1.5 }}>
-              J&apos;accepte que mes informations professionnelles (nom, entreprise, secteur, ville, email, téléphone) soient partagées <strong>uniquement avec les adhérents Dynabuy</strong>, dans le but de développer mon activité et de favoriser les échanges commerciaux au sein du réseau. Conformément au RGPD, je peux demander la suppression de mes données à tout moment en contactant l&apos;administrateur.
+              J&apos;accepte que mes informations professionnelles (nom, entreprise, secteur, ville, email, téléphone) soient partagées <strong>uniquement avec les adhérents Dynabuy</strong>, dans le but de développer mon activité et de favoriser les échanges commerciaux au sein du réseau. Conformément au RGPD, je peux demander la suppression de mes données à tout moment en contactant <a href="mailto:mateo.gimenez@oxycom-competences.fr" style={{ color: 'var(--red)', fontWeight: 600, textDecoration: 'underline' }}>l&apos;administrateur</a>.
             </span>
           </label>
           {errors.rgpd && <div style={{ color: '#dc2626', fontSize: '0.85rem', marginTop: 8 }}>{errors.rgpd}</div>}

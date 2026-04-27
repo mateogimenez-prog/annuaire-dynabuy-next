@@ -27,7 +27,7 @@ export default function AdminPanel() {
   const [members, setMembers] = useState<Member[]>([]);
   const [msgMember, setMsgMember] = useState('');
   const [editMember, setEditMember] = useState<Member | null>(null);
-  const [editForm, setEditForm] = useState({ prenom: '', nom: '', entreprise: '', secteur: '', ville: '', email: '', tel: '', bio: '' });
+  const [editForm, setEditForm] = useState({ prenom: '', nom: '', entreprise: '', secteur: '', ville: '', email: '', tel: '', bio: '', site_web: '' });
   const [savingEdit, setSavingEdit] = useState(false);
 
   const headers = useCallback(() => ({
@@ -73,7 +73,7 @@ export default function AdminPanel() {
 
   function openEdit(m: Member) {
     setEditMember(m);
-    setEditForm({ prenom: m.prenom, nom: m.nom, entreprise: m.entreprise, secteur: m.secteur, ville: m.ville, email: m.email, tel: m.tel, bio: m.bio || '' });
+    setEditForm({ prenom: m.prenom, nom: m.nom, entreprise: m.entreprise, secteur: m.secteur, ville: m.ville, email: m.email, tel: m.tel, bio: m.bio || '', site_web: m.site_web || '' });
   }
 
   async function handleSaveEdit(e: React.FormEvent) {
@@ -313,6 +313,16 @@ export default function AdminPanel() {
                     value={editForm.bio}
                     onChange={e => setEditForm(f => ({ ...f, bio: e.target.value }))}
                     placeholder="Description de l'activité du membre…"
+                  />
+                </div>
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <label style={{ fontSize: '0.83rem', fontWeight: 600, display: 'block', marginBottom: 4 }}>Site web <span style={{ fontWeight: 400, color: '#999' }}>(facultatif)</span></label>
+                  <input
+                    className="form-input"
+                    type="url"
+                    value={editForm.site_web}
+                    onChange={e => setEditForm(f => ({ ...f, site_web: e.target.value }))}
+                    placeholder="https://www.monsite.fr"
                   />
                 </div>
               </div>

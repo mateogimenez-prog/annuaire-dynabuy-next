@@ -16,11 +16,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
   const body = await req.json();
-  const { prenom, nom, entreprise, secteur, ville, email, tel, bio } = body;
+  const { prenom, nom, entreprise, secteur, ville, email, tel, bio, site_web } = body;
 
   const { data, error } = await getAdminClient()
     .from('members')
-    .update({ prenom, nom, entreprise, secteur, ville, email, tel, ...(bio !== undefined ? { bio: bio || null } : {}) })
+    .update({ prenom, nom, entreprise, secteur, ville, email, tel, ...(bio !== undefined ? { bio: bio || null } : {}), ...(site_web !== undefined ? { site_web: site_web || null } : {}) })
     .eq('id', id)
     .select()
     .single();
