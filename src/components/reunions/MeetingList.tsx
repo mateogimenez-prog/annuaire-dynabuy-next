@@ -1,5 +1,6 @@
 import type { Meeting } from '@/types';
 import { getDateParts, getFormatLabel } from '@/lib/utils';
+import AddToCalendarButton from './AddToCalendarButton';
 
 export default function MeetingList({ meetings }: { meetings: Meeting[] }) {
   const today = new Date();
@@ -64,6 +65,7 @@ export default function MeetingList({ meetings }: { meetings: Meeting[] }) {
                         {m.animateur}
                       </div>
                       <div className="meeting-prix">{m.prix}</div>
+                      <AddToCalendarButton meeting={m} />
                       <a href={m.lien} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-primary">
                         S&apos;inscrire →
                       </a>

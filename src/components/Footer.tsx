@@ -19,6 +19,10 @@ export default function Footer() {
           </a>
         </div>
       </div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 8, flexWrap: 'wrap' }}>
+        <Link href="/mentions-legales" style={{ fontSize: '0.8rem', color: 'var(--muted)', textDecoration: 'none' }}>Mentions légales</Link>
+        <Link href="/confidentialite" style={{ fontSize: '0.8rem', color: 'var(--muted)', textDecoration: 'none' }}>Politique de confidentialité</Link>
+      </div>
       <p className="footer-copy">© 2026 Annuaire Dynabuy – Plateforme réservée aux adhérents</p>
     </footer>
   );

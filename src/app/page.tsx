@@ -9,10 +9,15 @@ export default async function HomePage() {
   const [members, meetings] = await Promise.all([getMembers(), getMeetings()]);
 
   const sectors = new Set(members.map(m => m.secteur));
-  const today = new Date();
+  const now = new Date();
+  const today = new Date(now);
   today.setHours(0, 0, 0, 0);
   const upcoming = meetings
-    .filter(m => new Date(m.date + 'T00:00:00') >= today)
+    .filter(m => {
+      const [h, min] = (m.fin || '23h59').split('h').map(Number);
+      const end = new Date(m.date + 'T' + String(h).padStart(2, '0') + ':' + String(min || 0).padStart(2, '0') + ':00');
+      return end > now;
+    })
     .sort((a, b) => a.date.localeCompare(b.date));
   const nextMeeting = upcoming[0];
   const daysUntilNext = nextMeeting
@@ -183,7 +188,10 @@ export default async function HomePage() {
           </div>
           <div className="how-card card">
             <div className="how-icon">
-              <svg width="26" height="26" fill="none" stroke="var(--red)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <div style={{ width: 56, height: 56, borderRadius: 14, background: 'linear-gradient(135deg, #e8392a 0%, #c0271a 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white', boxShadow: '0 4px 12px rgba(232,57,42,0.35)' }}>
+                <span style={{ fontWeight: 900, fontSize: '1.35rem', lineHeight: 1, letterSpacing: '-1px' }}>10%</span>
+                <span style={{ fontWeight: 600, fontSize: '0.55rem', letterSpacing: '1.5px', textTransform: 'uppercase', opacity: 0.85, marginTop: 2 }}>remise</span>
+              </div>
             </div>
             <h3>Parrainage – 10 %</h3>
             <p>Recommandez Dynabuy et bénéficiez d&apos;une <strong>remise de 10 %</strong> sur votre cotisation à chaque parrainage.</p>
