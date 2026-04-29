@@ -65,6 +65,31 @@ export const SEARCH_ALIASES: Array<{ keywords: string[]; sectors: string[] }> = 
   { keywords: ['art', 'artiste', 'culture', 'galerie', 'peintre', 'sculpteur', 'createur', 'créateur'], sectors: ['Art, Design, Création & Culture'] },
 ];
 
+export const CITY_COORDS: Record<string, [number, number]> = {
+  bordeaux: [44.8378, -0.5792], merignac: [44.8357, -0.6445], pessac: [44.8063, -0.6310],
+  talence: [44.8033, -0.5887], begles: [44.8083, -0.5486], blanquefort: [44.9139, -0.6368],
+  eysines: [44.8883, -0.6461], bruges: [44.8978, -0.6137], 'le bouscat': [44.8661, -0.6012],
+  floirac: [44.8353, -0.5258], cenon: [44.8555, -0.5227], lormont: [44.8724, -0.5155],
+  'le haillan': [44.8807, -0.6651], gradignan: [44.7763, -0.6239], cestas: [44.7559, -0.7046],
+  bayonne: [43.4929, -1.4748], biarritz: [43.4832, -1.5586], anglet: [43.4869, -1.5215],
+  'saint-jean-de-luz': [43.3870, -1.6635], hendaye: [43.3580, -1.7720],
+  pau: [43.2951, -0.3708], billere: [43.2983, -0.4016], lescar: [43.3283, -0.4283],
+  'la rochelle': [46.1603, -1.1511], lagord: [46.1823, -1.1468], aytre: [46.1328, -1.1176],
+  limoges: [45.8336, 1.2611], perigueux: [45.1843, 0.7218], angouleme: [45.6488, 0.1561],
+  poitiers: [46.5802, 0.3404], niort: [46.3236, -0.4608], saintes: [45.7460, -0.6323],
+  'mont-de-marsan': [43.8909, -0.4965], dax: [43.7109, -1.0515], agen: [44.2001, 0.6218],
+  cahors: [44.4473, 1.4419], brive: [45.1577, 1.5310], tulle: [45.2713, 1.7700],
+  rochefort: [45.9413, -0.9597], royan: [45.6268, -1.0317],
+};
+
+export function getCityCoords(ville: string): [number, number] | null {
+  const key = normalize(ville);
+  for (const [k, coords] of Object.entries(CITY_COORDS)) {
+    if (normalize(k) === key || key.includes(normalize(k)) || normalize(k).includes(key)) return coords;
+  }
+  return null;
+}
+
 function normalize(s: string) {
   return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
