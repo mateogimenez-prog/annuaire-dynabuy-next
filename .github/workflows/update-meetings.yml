@@ -1,0 +1,26 @@
+name: Mise à jour des réunions
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 3h UTC = 5h Paris (CEST)
+  workflow_dispatch:       # lancement manuel possible
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installer les dépendances du scraper
+        run: npm install
+        working-directory: scripts
+
+      - name: Fetch meetings → Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/fetch-meetings.js
