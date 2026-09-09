@@ -109,16 +109,20 @@ async function getMeetingIds(page, agencyId) {
     await new Promise(r => setTimeout(r, 3000));
     const currentUrl = page.url();
     console.log(`  → URL après navigation: ${currentUrl}`);
-    const ids = await page.evaluate(() => {
+    const result = await page.evaluate(() => {
       const ids = new Set();
       document.querySelectorAll('a[href*="/nos-rencontres/"]').forEach(a => {
         const m = a.href.match(/\/nos-rencontres\/(\d{4,6})(?:[?#]|$)/);
         if (m) ids.add(parseInt(m[1]));
       });
-      return [...ids];
+      const allLinks = [...document.querySelectorAll('a')].slice(0, 10).map(a => a.href);
+      const bodySnippet = document.body.innerText.slice(0, 300);
+      return { ids: [...ids], allLinks, bodySnippet };
     });
-    console.log(`  → ${ids.length} liens trouvés`);
-    return ids;
+    console.log(`  → ${result.ids.length} liens trouvés`);
+    console.log(`  → Premiers liens: ${result.allLinks.join(' | ')}`);
+    console.log(`  → Corps: ${result.bodySnippet}`);
+    return result.ids;
   } catch (err) {
     console.warn(`Agence ${agencyId} erreur:`, err.message);
     return [];
