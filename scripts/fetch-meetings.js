@@ -104,10 +104,12 @@ async function getAgencyIds(page) {
 async function getMeetingIds(page, agencyId) {
   try {
     const url = `${BASE}/nos-rencontres?agency=${agencyId}`;
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 20000 });
-    if (!page.url().includes(`agency=${agencyId}`)) return [];
-    await page.waitForSelector('a[href*="/nos-rencontres/"]', { timeout: 5000 }).catch(() => {});
-    return await page.evaluate(() => {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    // Attendre que le contenu se charge (JS async)
+    await new Promise(r => setTimeout(r, 3000));
+    const currentUrl = page.url();
+    console.log(`  → URL après navigation: ${currentUrl}`);
+    const ids = await page.evaluate(() => {
       const ids = new Set();
       document.querySelectorAll('a[href*="/nos-rencontres/"]').forEach(a => {
         const m = a.href.match(/\/nos-rencontres\/(\d{4,6})(?:[?#]|$)/);
@@ -115,6 +117,8 @@ async function getMeetingIds(page, agencyId) {
       });
       return [...ids];
     });
+    console.log(`  → ${ids.length} liens trouvés`);
+    return ids;
   } catch (err) {
     console.warn(`Agence ${agencyId} erreur:`, err.message);
     return [];
