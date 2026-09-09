@@ -3,6 +3,16 @@
     {
       "path": "/api/keep-alive",
       "schedule": "0 8 */5 * *"
+    },
+    {
+      "path": "/api/cron/update-meetings",
+      "schedule": "0 3 * * *"
     }
-  ]
+  ],
+  "functions": {
+    "src/app/api/cron/update-meetings/route.ts": {
+      "regions": ["cdg1"],
+      "maxDuration": 60
+    }
+  }
 }
